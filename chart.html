@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Highcharts Example</title>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+<style>
+    body{
+        background-color: lightblue;
+    }
+    #container{
+        height: 300px;
+        min-width: 310px;
+         max-width: 500px; 
+         margin-left: 250px; 
+        
+         display: inline-block;
+    }
+    #container1{
+        height: 300px;
+        min-width: 310px;
+         max-width: 500px; 
+         margin: auto;
+         margin-left:15px;
+         display: inline-block;
+    }
+    #container2{
+        height:300px;
+        width:650px;
+        border:3px solid black;
+        margin:30px;
+        margin-left:250px;
+        
+    }
+    #conteneur{
+        text-align: center;
+    }
+    button{
+    width:80px;
+    height:30px;
+    border:3px solid rgb(0, 0, 24);
+    background-color: lightblue;
+    color:rgb(0, 0, 64);
+    margin:10px;
+    box-shadow: 3px 3px 3px rgb(0, 0, 64);
+    }
+    .switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  margin:10px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ffffff;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+#value{
+    color:rgb(0, 0, 43);
+}
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #b3b2b2;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/* -----------------------------Slide bar*/
+
+.slidecontainer{
+	margin-left:300px;
+    margin-top:30px;
+}
+.sliderbar {
+  -webkit-appearance: none;
+  width: 30%;
+  height: 15px;
+  border-radius: 5px;
+  background: #909090;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+  
+}
+
+.sliderbar:hover {
+  opacity: 1;
+}
+
+.sliderbar::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: rgb(1, 1, 50);
+  cursor: pointer;
+}
+
+.sliderbar::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #04AA6D;
+  cursor: pointer;
+}
+#input{
+    width:60px;
+    height:20px;
+    border:3px solid rgb(1, 1, 50);
+    box-shadow: 3px 3px 3px rgb(1, 1, 50);
+    Color:rgb(1, 1, 50);
+    padding:3px;
+}
+#time{
+        width:80px;
+        height:30px;
+        border:5px solid rgb(0, 0, 48);
+        color:rgb(0, 0, 48);
+        background-color: #ffffff;
+    }
+
+
+</style>
+
+</head>
+<body>
+    <div id="container">
+        
+    </div>
+    <div id="container1">
+        
+    </div>
+    <div id="container2">
+        <div id="chart-temperature" class="container"></div>
+    </div>
+    
+        <label for="time">Choose x axis:</label>
+        <select name="time" id="time" onchange="ChangeX()">
+      
+            <option value="m">Monthly</option>
+            <option value="w">Weekly</option>
+            <option value="h">Hourly</option>
+         
+        
+        </select>
+        
+    
+      <div id="conteneur">
+        <label class="switch">
+            <input type="checkbox">
+            <span class="slider round" onclick="Switch()"></span>
+          </label>
+          <span id="value">OFF
+          </span>
+       </div>
+         
+        
+      </div>
+      <div class="slidecontainer">
+        <input type="number" id="input" onkeyup="Change()">
+        <input type="range" min="1" max="100" value="50" class="sliderbar" id="myRange">
+        <p>Value: <span id="demo"></span></p>
+      </div>
+      <a href="index.html" ><button>Retour</button></a>
+    <script type="text/javascript" src="exp1.js">
+       
+    </script>
+</body>
+</html>
